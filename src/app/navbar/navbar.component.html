@@ -23,15 +23,15 @@
             </div>
         </div>
 
-        <!-- <div class="col-md-4"> -->
+        <!-- <div class="col-md-4" *ngIf="accountType != 'seller'"> -->
             <!-- <div class="row justify-content-around px-3 py-1" *ngIf="accountType != 'seller'">
                 <input type="search" placeholder="Search your need..." class="search" style="width: 90%;">
             </div> -->
             
         <!-- </div> -->
 
-        <div class="offset-md-2 col-md-6 px-5" *ngIf="accountType != 'seller'">
-            <div class="row justify-content-end mr-5">
+        <div class="offset-md-4 col-md-4 float-right" *ngIf="accountType != 'seller'">
+            <div class="row justify-content-around">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle mr-5" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{category}}
@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="dropdown medium ml-5 mr-5">
+                <div class="dropdown medium">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         [disabled]="!category_selected" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" (click)="getStores()">
