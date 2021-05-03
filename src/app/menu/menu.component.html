@@ -1,0 +1,74 @@
+<div class="container mt-2 d-flex justify-content-center">
+    <div class="row ">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h3>{{details.name}}</h3>
+                    <h4>{{details.street}}, {{details.city}} - {{details.pin}}</h4>
+                    <h4>{{details.rating}} Star</h4>
+                </div>
+
+
+                <div class="dropdown ml-5">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type
+                    </button>
+                    <!-- <div class="dropdown-menu" id="location-menu" aria-labelledby="dropdownMenuButton">
+                        <option class="dropdown-item" value="delhi">All</option>
+                        <option class="dropdown-item" value="delhi">Starter</option>
+                        <option class="dropdown-item" value="mumbai">Veg</option>
+                        <option class="dropdown-item" value="hyderabad">Beverages</option>
+                    </div> -->
+                </div>
+
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="row glass p-2 ml-1 mr-1 mb-2" *ngFor="let item of menu" [cart]="cart">
+                        <div class="col-md-3 text-center">
+                            <img src="{{item.imgURL}}" alt="" width="170rem" height="170rem"
+                                style="border-radius: 50%;">
+                        </div>
+
+                        <div class="col-md-5 ml-3" style="margin: auto 0;">
+                            <h4>{{item.item}}</h4>
+                            <h6>{{item.description}}</h6>
+                            <h6>{{item.rating}} Star</h6>
+                            <div></div>
+                            <h4>{{item.price | currency:'INR'}}</h4>
+                        </div>
+
+                        <div class="col-md-3" style="margin: auto 0;">
+                            <div class="row d-flex justify-content-center">
+                                <div class="btn" [ngClass]="{
+                                    'dec' : item.quantity > 0,
+                                    'dis-btn' : item.quantity == 0
+                                 }" (click)="dec(item)" [disabled]="!loggedIn">-</div>
+                                <h4 class="mt-2 mr-3 ml-3" id="qty">{{item.quantity}} </h4>
+                                <div class="btn" id="inc" [ngClass]="{
+                                    'inc' : loggedIn,
+                                    'dis-btn' : !loggedIn
+                                 }" (click)="inc(item)" [disabled]="!loggedIn">+</div>
+                            </div>
+
+                            <div class="row" *ngIf="item.netPrice > 0">
+                                <h4>Net Amount: {{item.netPrice | currency:'INR'}}</h4>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

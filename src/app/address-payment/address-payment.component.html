@@ -1,0 +1,40 @@
+<div class="container" id="address-payment">
+    <app-address (addressDetails)="selAdd($event)"></app-address>
+
+    <div class="row mt-5 p-3 glass">
+        <div class="col-sm-3">
+            <h5>Subtotal: {{total | currency: 'INR'}}</h5>
+        </div>
+        <div class="col-sm-6" id="payment" *ngIf="shippingAdd">
+            <h4>Payment Mode</h4>
+            <div class="row p-2 mb-2 glass" for="cod">
+                <input type="radio" name="mode" id="cod" value="cod" class="mt-2 mr-3" [(ngModel)]="mode">
+                <h5>Cash on Delivery</h5>
+            </div>
+            <div class="row p-2 mb-2 glass" for="online">
+                <input type="radio" name="mode" id="online" value="online" class="mt-2 mr-3" [(ngModel)]="mode">
+                <h5>Online</h5>
+            </div>
+        </div>
+        <div class="col-sm-3 text-center" *ngIf="mode">
+            <button class="btn btn-warning" id="order" (click)="placeOrder()">Order On</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="container" id="orderStatus">
+    <div class="row p-4 mt-4 glass justify-content-center">
+        <div class="col-sm">
+            <h5>{{msg}}</h5>
+            <div class="mt-4 text-center" *ngIf="txnStatus == 'TXN_SUCCESS'">
+                <h4>Order ID: {{odID}}</h4>
+                <h3>Thank You for Shopping</h3>
+            </div>
+            <div class="mt-4 text-center" *ngIf="txnStatus != 'TXN_SUCCESS'">
+                <h4>Something went wrong during payment. If the amount was deducted, it will be refunded to you in short time</h4>
+                <h3>Sorry for the inconvenience</h3>
+            </div>
+        </div>
+    </div>
+</div>

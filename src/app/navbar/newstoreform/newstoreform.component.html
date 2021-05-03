@@ -1,0 +1,63 @@
+<div class="text-center pt-3 mt-2" id="form">
+    <input type="file" id="web-worker2" #storeImage accept="image/*" (change)="compressImage(storeImage.files[0])"
+        style="display: none;">
+    <input type="image" (click)="upload()" [src]="imgURL ? imgURL : imgUrl" alt="" width="80%"
+        style="border-radius: 1rem;" class=" ref">
+    <div class="row">
+        <div class="col p-4">
+            <form action="" class="form-group px-3" [formGroup]="newStore">
+                <div class="row justify-content-between mt-2">
+                    <label for="">Store Name</label>
+                    <input type="text" class="input-field form-control" [formControl]="newStore.controls['name']"
+                        style="width: 20rem;">
+                </div>
+                <div class="row mt-2">
+                    <label for="">Select store category</label>
+                    <div class="dropdown ml-2">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{category}}
+                        </button>
+                        <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton" (click)="getCategory($event)">
+                            <option class="dropdown-item" value="restaurants">Restaurants</option>
+                            <option class="dropdown-item" value="groceries">Groceries</option>
+                            <option class="dropdown-item" value="pharmacy">Pharmacy</option>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-between mt-2">
+                    <label class="form-label">Street</label>
+                    <input type="text" class="input-field form-control m-1 mb-sm-2" style="width: 20rem;"
+                        [formControl]="newStore.controls['street']">
+                </div>
+                <div class="row justify-content-between mt-2">
+                    <label class="form-label">City</label>
+                    <input type="text" class="input-field form-control m-1 mb-sm-2" style="width: 20rem;"
+                        [formControl]="newStore.controls['city']">
+                </div>
+                <div class="row justify-content-between mt-2">
+                    <label class="form-label">State</label>
+                    <input type="text" class="input-field form-control m-1 mb-sm-2" style="width: 20rem;"
+                        [formControl]="newStore.controls['state']">
+                </div>
+                <div class="row justify-content-between mt-2">
+                    <label class="form-label">Pin Code</label>
+                    <input type="text" pattern="[0-9]{6}" class="input-field form-control m-1 mb-sm-2"
+                        style="width: 20rem;" [formControl]="newStore.controls['pin']">
+                </div>
+                <div class="row mt-2">
+                    <label class="form-label">Get Location of Store</label>
+                    <button class="submit mx-2" type="button" style="margin-top: 0" (click)="getLocation()">
+                        <img src="../../assets/images/location.svg" alt="" class="mr-2" style="height: 25px;"> Location
+                    </button>
+                    <h6 *ngIf="location">Lat: {{location.latitude.toPrecision(4)}}</h6>
+                    <h6 *ngIf="location" class="ml-2">Long: {{location.longitude.toPrecision(4)}}</h6>
+                </div>
+                <div class="row justify-content-between mt-2">
+                    <label for="">Phone Number</label>
+                    <input type="tel" placeholder="(+91)" class="input-field form-control"
+                        [formControl]="newStore.controls['phone']" style="width: 20rem;">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

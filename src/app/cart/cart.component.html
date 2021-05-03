@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm-8">
+            <h3>Your Cart</h3>
+        </div>
+        <div class="col-sm">
+            <div class="row empty" (click)="emptyCart()" *ngIf="length > 0">
+                <img src="../../assets/images/bin.png" alt="" height="30rem">
+                <span class="p-1"><h5>Empty Cart</h5></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <div class="row glass p-2 ml-1 mr-1 mb-2 parent" *ngFor="let item of cart">
+                <div class="col-md-3 text-center">
+                    <img src="{{item.imgURL}}" alt="" width="170rem" height="170rem"
+                        style="border-radius: 50%;">
+                </div>
+
+                <div class="col-md-6" style="margin: auto 0;">
+                    <h4>{{item.item}}</h4>
+                    <h5>{{item.description}}</h5>
+                    <h5>{{item.rating}} Star</h5>
+                    <div></div>
+                    <h6>{{item.price | currency:'INR'}}</h6>
+                </div>
+
+                <div class="col-md-3" style="margin: auto 0;">
+                    <img src="../../assets/images/bin.png" class="offset-5 remove" alt="" height="20rem" (click)="remove(item)" style="cursor: pointer;">
+                    <div class="row mt-3 d-flex justify-content-center">
+                        <div class="btn" [ngClass]="{
+                            'dec' : item.quantity > 0,
+                            'dis-btn' : item.quantity == 0
+                         }" (click)="dec(item)" [disabled]="!loggedIn">-</div>
+                        <h4 class="mt-2 mr-3 ml-3" id="qty">{{item.quantity}} </h4>
+                        <div class="btn" id="inc" [ngClass]="{
+                            'inc' : loggedIn,
+                            'dis-btn' : !loggedIn
+                         }" (click)="inc(item)" [disabled]="!loggedIn">+</div>
+                    </div>
+
+                    <div class="row p-2" *ngIf="item.netPrice > 0">
+                        <h4>Net Amount: {{item.netPrice | currency:'INR'}}</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mt-3 p-4">
+        <div class="col-sm-8">
+            <h3>Total Amount: {{total | currency:'INR'}}</h3>
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-lg btn-success mr-4" routerLink="/payment">Order On</button>
+        </div>
+    </div>
+</div>

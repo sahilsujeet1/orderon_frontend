@@ -1,0 +1,45 @@
+.inc, .dec {
+    background-color: rgba(223, 29, 29, 0.842);
+    color: white;
+    font-weight: bolder;
+    font-size: 2rem;
+    line-height: 1.8rem;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+}
+
+.dis-btn {
+    background-color: rgba(148, 18, 18, 0.842);
+    color: white;
+    font-weight: bolder;
+    font-size: 2rem;
+    line-height: 1.8rem;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+}
+
+#dec {
+    line-height: 1.75rem;
+}
+
+.empty {
+    width: 9rem;
+    cursor: pointer;
+}
+
+.parent {
+    position: relative;
+}
+
+@media(max-width: 768px) {
+   
+    .remove {
+        position:absolute;
+        bottom: 22rem;
+        right: 1.4rem;
+    }
+}

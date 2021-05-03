@@ -1,0 +1,92 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  background-image: url("./assets/images/bg.png");
+  overflow-x: hidden;
+  height: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+input,
+button {
+  color: white;
+  opacity: 0.9;
+}
+
+.input-field {
+  color: black;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 20px;
+  padding: 7px;
+  padding-left: 15px;
+  border-top: 1px solid rgba(255, 255, 2555, 0.15);
+  border-left: 1px solid rgba(255, 255, 2555, 0.15);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.submit {
+  border: none;
+  border-radius: 20px;
+  border-top: 1px solid rgba(255, 255, 2555, 0.15);
+  border-left: 1px solid rgba(255, 255, 2555, 0.15);
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 8rem;
+  height: 40px;
+  /* color: rgba(41, 38, 38, 0.863); */
+  font-weight: bolder;
+  margin-top: 1rem;
+  box-shadow: 20px 20px 50px rgb(0, 0, 0, 0.5);
+}
+
+.submit:hover {
+  background-color:chartreuse;
+  color: black;
+}
+
+::placeholder {
+  color: white !important;
+  opacity: 0.7 !important;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px 10px 10px 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px 10px 10px 10px;
+  backdrop-filter: blur(20px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  width: 15px;
+}
+
+.glass {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 20px 20px 50px rgb(0, 0, 0, 0.5);
+  border-radius: 3rem;
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 2555, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}

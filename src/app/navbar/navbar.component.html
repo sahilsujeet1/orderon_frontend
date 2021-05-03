@@ -1,0 +1,86 @@
+<div class="container-fluid mt-2">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="row justify-content-around px-3 py-1">
+                <img src="../../assets/images/logo.png" height="50px" alt="" routerLink='/' style="cursor: pointer;">
+
+                <div class="dropdown ml-5 medium" style="margin-top: -0.7rem;">
+                    <button class="btn btn-secondary profile" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{icon}}" alt="" class="logo" height="50px" style="border-radius: 50%;">
+                    </button>
+                    <div class="dropdown-menu" id="profile-menu" aria-labelledby="dropdownMenuButton">
+                        <option class="dropdown-item" value="login" routerLink="/auth" *ngIf="!loggedIn">Login</option>
+                        <option class="dropdown-item" value="profile" routerLink='/profile' *ngIf="loggedIn">Profile
+                        </option>
+                        <option class="dropdown-item" value="orders" routerLink="/orders" *ngIf="loggedIn && accountType == 'customer'">Order History
+                        </option>
+                        <option class="dropdown-item" value="signout" (click)="signout()" *ngIf="loggedIn">Sign out
+                        </option>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-4"> -->
+            <!-- <div class="row justify-content-around px-3 py-1" *ngIf="accountType != 'seller'">
+                <input type="search" placeholder="Search your need..." class="search" style="width: 90%;">
+            </div> -->
+            
+        <!-- </div> -->
+
+        <div class="offset-md-2 col-md-6 px-5" *ngIf="accountType != 'seller'">
+            <div class="row justify-content-end mr-5">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle mr-5" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{category}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" (click)="getCategory($event)">
+                        <option class="dropdown-item" value="restaurants">Restaurants</option>
+                        <option class="dropdown-item" value="groceries">Groceries</option>
+                        <option class="dropdown-item" value="pharmacy">Pharmacy</option>
+                    </div>
+                </div>
+
+                <div class="dropdown medium ml-5 mr-5">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        [disabled]="!category_selected" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" (click)="getStores()">
+                        <img src="../../assets/images/location.svg" alt="" class="mr-2" style="height: 25px;"> Location
+                    </button>
+                    <div class="dropdown-menu" id="location-menu" aria-labelledby="dropdownMenuButton">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-8 text-center" *ngIf="accountType == 'seller' && loggedIn">
+            <div class="row px-3 py-1 justify-content-center">
+                <button class="submit store ml-3" *ngFor="let i of sellerStores"
+                    [routerLink]="['/home/seller/'] + i.category + ['/'] + i.storeId" (click)="disp(i)">{{i.name.slice(0,12)}}</button>
+                <button class="submit store ml-3" data-toggle="modal" data-target="#addStore"> + Add a store</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="addStore" tabindex="-1" role="dialog" aria-labelledby="addStoreLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addStoreLabel">Add New Store</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <app-newstoreform #newstoreform></app-newstoreform>
+            <div class="modal-footer justify-content-around">
+                <button type="button" class="submit del" data-dismiss="modal">Close</button>
+                <button type="button" class="submit" data-dismiss="modal" (click)="newstoreform.save(newstoreform.newStore)">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <button class="btn btn-primary" (click)="addNew()">Add new Address</button>
+        </div>
+    </div>
+
+    <div class="p-3 glass mt-4" id="mod">
+        <form action="submit" class="form-group" [formGroup]="address">
+
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" placeholder="Full Name" class="input-field form-control m-1 mb-sm-2"
+                    style="width: 18.5rem;" [formControl]="address.controls['fullName']">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Street</label>
+                <input type="text" placeholder="Street Name" class="input-field form-control m-1 mb-sm-2"
+                    style="width: 18.5rem;" [formControl]="address.controls['street']">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">City</label>
+                <input type="text" placeholder="City" class="input-field form-control m-1 mb-sm-2"
+                    style="width: 18.5rem;" [formControl]="address.controls['city']">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">State</label>
+                <input type="text" placeholder="State" class="input-field form-control m-1 mb-sm-2"
+                    style="width: 18.5rem;" [formControl]="address.controls['state']">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">PIN Code</label>
+                <input type="zip" placeholder="PIN" class="input-field form-control m-1 mb-sm-2" style="width: 18.5rem;"
+                    [formControl]="address.controls['pin']">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mobile</label>
+                <input type="tel" placeholder="+91" class="input-field form-control m-1 mb-sm-2" style="width: 18.5rem;"
+                    [formControl]="address.controls['mobile']">
+            </div>
+
+            <button class="submit" (click)="save(address)">Save</button>
+            <span class="ml-3"><button class="submit" (click)="close()">Cancel</button></span>
+        </form>
+    </div>
+
+    <div class="row justify-content-center" *ngIf="!available">
+        <h3>No Address Saved</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mt-3" *ngFor="let add of savedAddress">
+            <div class="col glass p-4">
+                <div class="row">
+                    <div class="col-8">
+                        <input type="radio" name="address" id="{{add.id}}" value="{{add.id}}" [(ngModel)]="selAdd"
+                            (click)="shipAdd(add)">
+                    </div>
+                    <div class="col-4 d-flex justify-content-between float-right">
+                        <img src="../../assets/images/edit.png" alt="" height="22px" class="add-btn">
+                        <img src="../../assets/images/bin.png" alt="" height="22px" class="add-btn" (click)="del(add)">
+                    </div>
+                </div>
+
+
+                <h4>{{add.fullName}}</h4>
+                <h5>{{add.street}}</h5>
+                <h6>{{add.city}}</h6>
+                <h6>{{add.state}}</h6>
+                <h6>{{add.pin}}</h6>
+                <h6>Mobile: {{add.mobile}}</h6>
+            </div>
+        </div>
+    </div>
+</div>

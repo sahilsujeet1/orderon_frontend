@@ -1,0 +1,148 @@
+<div class="container-fluid">
+    <div class="row m-3 justify-content-center">
+        <div class="offset-sm-4 col-sm-4 text-center">
+            <h2>{{storeName}}</h2>
+        </div>
+        <div class="col-sm-4">
+            <div class="row justify-content-around">
+                <button class="btn btn-lg btn-warning" [routerLink]="['/orders/'] + cat + ['/'] + id">All Orders</button>
+                <button class="btn btn-lg btn-warning" [routerLink]="['/products/'] + cat + ['/'] + id">Manage Products</button>
+            </div>
+        </div> 
+    </div>
+
+    <div class="row">
+        <div class="col-md m-2 p-2 glass orders">
+            <h4 class="ml-4 mb-3">New Orders</h4>
+            <div class="py-2" style="height: 44rem; overflow-y: scroll; border-radius: 3.7rem;">
+
+                <div class="row m-3" *ngIf="newOrders.length == 0">
+                    <div class="col text-center">
+                        <h2>No New Orders as of now</h2>
+                    </div>
+                </div>
+                <div class="row p-2 m-1 mb-2 glass" style="overflow-y: scroll; border-radius: 3.7rem;"
+                    *ngFor="let orders of newOrders">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h5>{{orders.order.orderID}}</h5>
+                                <h6>{{orders.order.orderedAt | date: 'medium'}}</h6>
+                                <h5>{{orders.order.amount | currency: 'INR'}}</h5>
+                            </div>
+                            <div class="col mt-3 p-3 d-flex justify-content-end">
+                                <button class="btn btn-success" (click)="pushToProcessing(orders)">Send to
+                                    Process</button>
+                            </div>
+                        </div>
+
+                        <div *ngFor="let orderItem of orders.order.orderItems">
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <img src="{{orderItem.imgURL}}" height="130rem" width="170rem" alt=""
+                                        style="border-radius: 12%;">
+                                </div>
+                                <div class="col">
+                                    <h4>{{orderItem.item}}</h4>
+                                    <h4>Quantity: {{orderItem.quantity}}</h4>
+                                    <h5>Price: {{orderItem.netPrice | currency: 'INR'}}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md m-2 p-2 glass orders">
+            <h4 class="ml-4 mb-3">In Process</h4>
+            <div class="py-2" style="height: 44rem; overflow-y: scroll; border-radius: 3.7rem;">
+                <div class="row m-3" *ngIf="inProcess.length == 0">
+                    <div class="col text-center">
+                        <h2>No Order in Process</h2>
+                    </div>
+                </div>
+                <div class="row p-2 m-1 mb-2 glass" *ngFor="let orders of inProcess">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h5>{{orders.order.orderID}}</h5>
+                                <h6>{{orders.order.orderedAt | date: 'medium'}}</h6>
+                                <h5>{{orders.order.amount | currency: 'INR'}}</h5>
+                            </div>
+                            <div class="col mt-3 p-3 d-flex justify-content-end">
+                                <button class="btn btn-success" (click)="pushToOut(orders)">Out for Delivery</button>
+                            </div>
+                        </div>
+
+                        <div *ngFor="let orderItem of orders.order.orderItems">
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <img src="{{orderItem.imgURL}}" height="130rem" width="170rem" alt=""
+                                        style="border-radius: 12%;">
+                                </div>
+                                <div class="col">
+                                    <h4>{{orderItem.item}}</h4>
+                                    <h4>Quantity: {{orderItem.quantity}}</h4>
+                                    <h5>Price: {{orderItem.netPrice | currency: 'INR'}}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md m-2 p-2 glass orders" >
+            <h4 class="ml-4 mb-3">Out for Delivery</h4>
+
+            <div class="py-2" style="height: 44rem; overflow-y: scroll; border-radius: 3.7rem;">
+
+                <div class="row m-3" *ngIf="outForDelivery.length == 0">
+                    <div class="col text-center">
+                        <h2>No order Out For Delivery</h2>
+                    </div>
+                </div>
+
+                <div class="row p-2 m-1 mb-2 glass" *ngFor="let orders of outForDelivery">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h5>{{orders.order.orderID}}</h5>
+                                <h6>{{orders.order.orderedAt | date: 'medium'}}</h6>
+                                <h5>{{orders.order.amount | currency: 'INR'}}</h5>
+                            </div>
+                            <!-- <div class="col mt-3 p-3 d-flex justify-content-end">
+                                <button class="btn btn-success">Send to Process</button>
+                            </div> -->
+                        </div>
+
+                        <div *ngFor="let orderItem of orders.order.orderItems">
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <img src="{{orderItem.imgURL}}" height="130rem" width="170rem" alt=""
+                                        style="border-radius: 12%;">
+                                </div>
+                                <div class="col">
+                                    <h4>{{orderItem.item}}</h4>
+                                    <h4>Quantity: {{orderItem.quantity}}</h4>
+                                    <h5>Price: {{orderItem.netPrice | currency: 'INR'}}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

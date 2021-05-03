@@ -1,0 +1,96 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-sm-5 text-center">
+            <h1>Manage Your Products</h1>
+            <button class="btn btn-primary" id="new-product" (click)="show()">Add New Product</button>
+            <div class="text-center pt-3 glass mt-2" id="newproductform" style="display: none;">
+                <input type="file" id="web-worker1" #itemImage accept="image/*"
+                    (change)="compressImage(itemImage.files[0])" style="display: none;">
+                <input type="image" (click)="upload()" [src]="imgURL1 ? imgURL1 : imgUrl1" alt="" width="80%"
+                    style="border-radius: 1rem;" class=" ref">
+                <div class="row">
+                    <div class="col p-4">
+                        <form action="" class="form-group px-3" [formGroup]="newProduct">
+                            <div class="row justify-content-between mt-2">
+                                <label for="">Item Name</label>
+                                <input type="text" class="input-field" [formControl]="newProduct.controls['item']">
+                            </div>
+                            <div class="row justify-content-between mt-2">
+                                <label for="">Price (Rs.)</label>
+                                <input type="number" class="input-field" [formControl]="newProduct.controls['price']">
+                            </div>
+                            <div class="row justify-content-between mt-2">
+                                <label for="">Available Quantity</label>
+                                <input type="number" class="input-field"
+                                    [formControl]="newProduct.controls['available']">
+                            </div>
+                            <div class="row justify-content-between mt-2">
+                                <label for="">Description</label>
+                                <textarea type="text" class="input-field" style="width: 20rem; height: 6rem;"
+                                    [formControl]="newProduct.controls['description']"></textarea>
+                            </div>
+                            <div class="row justify-content-center">
+                                <button class="submit reset" (click)="this.newProduct.reset()">Reset Form</button>
+                            </div>
+                            <div class="row justify-content-between mt-2">
+                                <button class="submit" (click)="save(newProduct)" data-dismiss="new-product">Save</button>
+                                <button class="submit del" id="delete" (click)="cancel()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-2 mt-5 justify-content-center">
+        <h4>Added Products</h4>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 mt-3" *ngFor="let product of products">
+            <div class="col glass">
+                <div class="text-center pt-3">
+                    <img [src]="product.imgURL" alt="" height="200rem" width="300rem" style="border-radius: 1rem;">
+                </div>
+                <div class="row">
+                    <div class="col p-4">
+                        <form action="" class="form-group">
+                            <div class="row justify-content-between mt-2">
+                                <label for="">Item Name</label>
+                                <input type="text" class="input-field" name="{{product.id}}_item"
+                                    [(ngModel)]="product.item">
+                            </div>
+                            <div class="row justify-content-between mt-2">
+                                <label for="">Price (Rs.)</label>
+                                <input type="number" class="input-field" name="{{product.id}}_price"
+                                    [(ngModel)]="product.price">
+                            </div>
+                            <div class="row justify-content-between mt-2">
+                                <label for="">Available Quantity</label>
+                                <input type="number" class="input-field" name="{{product.id}}_available"
+                                    [(ngModel)]="product.available">
+                            </div>
+                            <div class="row justify-content-between mt-2">
+                                <label for="">Description</label>
+                                <input type="text" class="input-field" name="{{product.id}}_desc"
+                                    [(ngModel)]="product.description">
+                            </div>
+                            <div class="row justify-content-center">
+                                <button class="submit reset" (click)="reset(product)">Reset Form</button>
+                            </div>
+                            <div class="row justify-content-between mt-2">
+                                <button class="submit" (click)="update(product)">Save</button>
+                                <button class="submit del" id="delete" (click)="delete(product)">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

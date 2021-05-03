@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <div class="row glass justify-content-center p-4 mb-2">
+        <div class="col-sm-4">
+            <a href=""><img src="../../assets/images/logo.png" routerLink="/home" alt="" class="logo" height="50px"></a>
+        </div>
+
+        <div class="col-sm-4">
+            <h4>Contact us</h4>
+            <p>Email: support@orderon.com</p>
+            <p>Tel: 1800-1111-111-111</p>
+            <p>Head Office: Chandigarh University, Gharuan, Mohali - 140413</p>
+        </div>
+
+        <div class="col-sm-4" *ngIf="accountType == 'customer'">
+            <h4>Join Us</h4>
+            <a routerLink='auth/seller'><p id="seller">Become an OrderOn Seller</p></a>
+        </div>
+    </div>
+</div>

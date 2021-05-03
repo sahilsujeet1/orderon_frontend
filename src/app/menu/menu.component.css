@@ -1,0 +1,48 @@
+.dropdown-toggle, option{
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 20px;
+    padding: 7px;
+    padding-left: 15px;
+    border-top: 1px solid rgba(255, 255, 2555, 0.15);
+    border-left: 1px solid rgba(255, 255, 2555, 0.15);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dropdown-menu {
+background: transparent;
+border: none;
+}
+
+option {
+    cursor: pointer;
+    margin-top: 0.2rem;
+}
+  
+.inc, .dec {
+    background-color: rgba(223, 29, 29, 0.842);
+    color: white;
+    font-weight: bolder;
+    font-size: 2rem;
+    line-height: 1.8rem;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+}
+
+.dis-btn {
+    background-color: rgba(148, 18, 18, 0.842);
+    color: white;
+    font-weight: bolder;
+    font-size: 2rem;
+    line-height: 1.8rem;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+}
+
+#dec {
+    line-height: 1.75rem;
+}

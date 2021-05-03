@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row m-3 p-2 d-flex justify-content-center">
+        <h2 style="opacity: 1;">Stores around You</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mt-3" *ngFor="let store of stores, let i = index">
+            <div class="col glass" (click)="getDetails(store)" [routerLink]="['/menu/'] + store.id">
+                <div class="text-center pt-3">
+                    <img src="{{store.imgURL}}" alt="" width="100%" style="border-radius: 1rem;">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4>{{store.name}}</h4>
+                        <h5>{{store.street}}, {{store.city}} - {{store.pin}}</h5>
+                        <!-- <h5>{{store.rating}} Stars</h5>
+                        <p>Some Description</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,104 @@
+<div class="container px-4">
+    <div class="row justify-content-center">
+        <h2>Your Orders</h2>
+    </div>
+
+    <div *ngIf="accountType == 'customer'">
+        <div class="row glass mb-3 mx-4" *ngFor="let orders of ordersPackage">
+            <div class="col-sm">
+                <div class="row px-4 pt-2">
+                    <div class="col-sm-3">
+                        <h5>{{orders.id}}</h5>
+                        <h6>{{orders.order.orderedAt | date: 'medium'}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Delivery Address</h5>
+                        <h5>{{orders.order.shippingAddress.fullName}}</h5>
+                        <h6>{{orders.order.shippingAddress.street}}, {{orders.order.shippingAddress.city}},
+                            {{orders.order.shippingAddress.state}} - {{orders.order.shippingAddress.pin}}</h6>
+                        <h6>Mobile: {{orders.order.shippingAddress.mobile}}</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>Amount: {{orders.order.totAmount | currency: 'INR'}} ({{orders.order.mode == 'cod' ? 'COD' :
+                            'Online'}})</h5>
+                    </div>
+                </div>
+
+                <div class="orderItem" *ngFor="let order of orders.order.orders">
+                    <div class="row glass p-2 mx-1 mb-2 parent" *ngFor="let orderItem of order.orderItems">
+                        <div class="col-md-3 text-center">
+                            <img src="{{orderItem.imgURL}}" alt="" width="170rem" height="170rem"
+                                style="border-radius: 50%;">
+                        </div>
+
+                        <div class="col-md-6 px-4">
+                            <h4 class="mb-4">{{orderItem.storeName}}</h4>
+                            <h5>{{orderItem.item}}</h5>
+                            <h5>{{orderItem.rating}} Star</h5>
+                            <div></div>
+                            <h6>Price: {{orderItem.netPrice}}</h6>
+                        </div>
+
+                        <div class="col-md-3" style="margin: auto 0;">
+                            <button class="btn btn-danger" *ngIf="order.status != 'delivered'"
+                                (click)="cancelItem(order)">Cancel</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div *ngIf="accountType == 'seller'">
+        <div class="row mb-3 mx-4">
+            <div class="col-lg-6" *ngFor="let orders of ordersPackage">
+                <div class="row p-2 m-1 mb-2 glass">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h6>{{orders.order.orderID}}</h6>
+                                <h6>{{orders.order.orderedAt | date: 'medium'}}</h6>
+                                <h6>Amount: {{orders.order.amount | currency : 'INR'}}</h6>
+                            </div>
+                            <div class="col-sm justify-content-end">
+                                <h6>{{orders.order.shippingAddress.fullName}} ({{orders.order.custId}})</h6>
+                                <h6>{{orders.order.shippingAddress.street}}, {{orders.order.shippingAddress.city}},
+                                    {{orders.order.shippingAddress.state}} - {{orders.order.shippingAddress.pin}}</h6>
+                                <h6>Mobile: {{orders.order.shippingAddress.mobile}}</h6>
+                            </div>
+                        </div>
+
+                        <div *ngFor="let orderItem of orders.order.orderItems">
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    
+                                    <img src="{{orderItem.imgURL}}" height="130rem" width="190rem" alt=""
+                                    style="border-radius: 12%;">
+
+                                </div>
+                                <div class="col">
+                                    <h4>{{orderItem.item}}</h4>
+                                    <h4>Quantity: {{orderItem.quantity}}</h4>
+                                    <h5>Price: {{orderItem.price}}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>

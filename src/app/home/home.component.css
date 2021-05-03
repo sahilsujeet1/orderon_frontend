@@ -1,0 +1,20 @@
+.box {
+    width: 70rem;
+    overflow-x: scroll;
+}
+
+.container-1 {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.container-1 img {
+    width: 20rem;
+    height: 13.5rem;
+    margin-right: 1.5rem;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+ h3 {
+     margin-left: 3rem;
+ }

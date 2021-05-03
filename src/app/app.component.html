@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col">
+    <app-navbar></app-navbar>
+    <!-- <app-test></app-test> -->
+    <!-- <app-seller-page></app-seller-page> -->
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+    <div class="cart-icon" routerLink="/cart" *ngIf="loggedIn && accountType =='customer'">
+      <img class="cart" src="../assets/images/cart_icon.svg" alt="" >
+      <div class="cart-length bg-danger" *ngIf="length > 0"><h4 class="text-center">{{length}}</h4></div>
+    </div>
+  </div>
+</div>
