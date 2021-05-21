@@ -25,13 +25,13 @@ export class NavbarComponent implements OnInit {
   uid: string;
   userInfo: any;
   loggedIn: boolean = false;
-  socket = io(`${environment.backend_uri}`);
+  // socket = io(`${environment.backend_uri}`);
 
-  bg = {
-    restaurants: '../assets/images/food_bg.png',
-    groceries: '../assets/images/groceries_bg.png',
-    pharmacy: '../assets/images/pharmacy_bg.png',
-  };
+  // bg = {
+  //   restaurants: '../assets/images/food_bg.png',
+  //   groceries: '../assets/images/groceries_bg.png',
+  //   pharmacy: '../assets/images/pharmacy_bg.png',
+  // };
 
   constructor(
     private http: HttpClient,
@@ -41,7 +41,6 @@ export class NavbarComponent implements OnInit {
   ) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.sellCat = this.activatedRoute.snapshot.paramMap.get('cat');
-    console.log(this.sellCat);
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -52,7 +51,6 @@ export class NavbarComponent implements OnInit {
         this.authService.getInfo(this.uid).then((res) => {
           this.accountType = res.accountType
           this.sellerStores = res.userData.data.stores
-          console.log(this.sellerStores)
         })
       } else {
         this.loggedIn = false;
@@ -63,16 +61,10 @@ export class NavbarComponent implements OnInit {
     
   }
 
-  disp(event) {
-    console.log(event);
-  }
-
   ngOnInit(): void {}
 
   signout() {
-    this.authService.signout().then(() => {
-      console.log('Logged out from Frontend');
-    });
+    this.authService.signout()
   }
 
   getCategory(event: any) {
@@ -88,7 +80,6 @@ export class NavbarComponent implements OnInit {
     // } else if (this.cat == 'pharmacy') {
     //   document.body.style.backgroundImage = this.bg.pharmacy
     // }
-    console.log(this.category);
   }
 
   async getStores() {
@@ -103,13 +94,11 @@ export class NavbarComponent implements OnInit {
         },
         category: this.cat,
       };
-      console.log(options);
 
       this.http
         .post(`${environment.backend_uri}/stores`, options)
         .toPromise()
         .then(() => {
-          console.log('in the then');
           window.location.href = `${environment.frontend_uri}/stores`;
         });
     });

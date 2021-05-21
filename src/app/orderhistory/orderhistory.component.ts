@@ -13,8 +13,7 @@ import { AuthService } from '../auth.service';
 })
 export class OrderhistoryComponent implements OnInit {
   delivered: boolean = false;
-  accountType: string = 'seller';
-  // accountType: string = 'customer'
+  accountType: string = 'customer';
 
   ordersPackage: any;
   store_name: string;
@@ -46,17 +45,10 @@ export class OrderhistoryComponent implements OnInit {
 
   async getCustomerOrderHistory() {
     this.ordersPackage = await this.http
-      .get(`${environment.backend_uri}/orderhistory/customer`)
+      .post(`${environment.backend_uri}/orderhistory/customer`, {
+        uid: this.uid,
+      })
       .toPromise();
-    console.log(this.ordersPackage);
-
-    for (let orders of this.ordersPackage) {
-      for (let order of orders.order.orders) {
-        console.log(order);
-        for (let orderItem of order.orderItems) {
-        }
-      }
-    }
   }
 
   async getSellerOrderHistory(id, cat) {
@@ -66,18 +58,16 @@ export class OrderhistoryComponent implements OnInit {
         cat: cat,
       })
       .toPromise();
-    console.log(this.ordersPackage);
   }
 
   cancelItem(item) {}
 
   async storeName(storeId, type) {
-    var storeData = await this.http
+    await this.http
       .post(`${environment.backend_uri}/orderhistory/storename`, {
         id: storeId,
         type: type,
       })
       .toPromise();
-    // this.store_name = storeData.name
   }
 }

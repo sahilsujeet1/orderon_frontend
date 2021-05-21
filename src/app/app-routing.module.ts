@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'auth/seller', component: LoginSellerComponent},
   {path: 'stores', component: StoresComponent},
   {path: 'cart',component: CartComponent},
-  {path: 'menu/:id',component: MenuComponent },
+  {path: 'menu',component: MenuComponent },
   {path: 'payment',component: AddressPaymentComponent},
   {path: 'orders',component: OrderhistoryComponent},
   {path: 'orders/:cat/:id',component: OrderhistoryComponent},

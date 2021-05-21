@@ -59,7 +59,7 @@
         <div class="col-md-8 text-center" *ngIf="accountType == 'seller' && loggedIn">
             <div class="row px-3 py-1 justify-content-center">
                 <button class="submit store ml-3" *ngFor="let i of sellerStores"
-                    [routerLink]="['/home/seller/'] + i.category + ['/'] + i.storeId" (click)="disp(i)">{{i.name.slice(0,12)}}</button>
+                    [routerLink]="['/home/seller/'] + i.category + ['/'] + i.storeId">{{i.name.slice(0,12)}}</button>
                 <button class="submit store ml-3" data-toggle="modal" data-target="#addStore"> + Add a store</button>
             </div>
         </div>

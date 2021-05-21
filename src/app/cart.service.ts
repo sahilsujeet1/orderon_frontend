@@ -32,10 +32,6 @@ export class CartService {
           this.cart.push(doc.data());
         });
       });
-
-    console.log(
-      this.cart.length == 0 ? 'No item in cart!' : `${this.cart.length} items in  cart`
-    );
     this.updateObs()
     return this.cart;
   }
@@ -91,9 +87,6 @@ export class CartService {
       .doc(this.uid)
       .collection('cart')
       .add(item)
-      .then(() => {
-        console.log('Item added to cart!');
-      });
   }
 
   updateValue(item) {
@@ -117,7 +110,6 @@ export class CartService {
           .collection('cart')
           .doc(updateId)
           .set(item)
-          .then(() => console.log('Quantity updated!'))
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
@@ -144,7 +136,6 @@ export class CartService {
             .then(() => {
               this.cart.splice(this.cart.indexOf(item),1);
               this.updateObs()
-              console.log('Item removed from cart!');
             })
             .catch((err) => console.log(err));
         });
@@ -158,7 +149,6 @@ export class CartService {
       query.docs.forEach(doc => {
         firebase.firestore().collection('users').doc(this.uid).collection('cart').doc(doc.id).delete().catch(err => console.log(err))
       })
-      console.log("Cart emptied!")
       this.cart.splice(this.cart)
       this.updateObs()
     }).catch(err => console.log(err))

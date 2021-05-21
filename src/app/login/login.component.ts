@@ -93,8 +93,8 @@ export class LoginComponent implements OnInit {
     this.authService
       .login(form.value.loginEmail, form.value.loginPassword)
       .catch((error) => {
-        this.colour = 'danger';
-        this.message = 'Wrong Password!';
+        // this.colour = 'danger';
+        // this.message = 'Wrong Password!';
         console.log(error);
       });
   }
@@ -122,9 +122,9 @@ export class LoginComponent implements OnInit {
             createdOn: firebase.firestore.FieldValue.serverTimestamp()
           })
           .then(() => {
-            this.colour = 'success';
-            this.message =
-              'You have been signed up successfully. Please login.';
+            // this.colour = 'success';
+            // this.message =
+            //   'You have been signed up successfully. Please login.';
             firebase.auth().signOut();
             this.signupForm.reset();
             this.router.navigate(['/']);

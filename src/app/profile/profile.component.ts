@@ -43,7 +43,5 @@ export class ProfileComponent implements OnInit {
     
   }
 
-  
-
   changePassword() {}
 }

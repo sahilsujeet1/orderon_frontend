@@ -83,7 +83,6 @@ export class ProductsComponent implements OnInit {
       var response: any = await this.http
         .post(`${environment.backend_uri}/store/new-product`, options)
         .toPromise();
-      console.log(response);
 
       if (response.itemId) {
         if (!response.error) {
@@ -93,7 +92,6 @@ export class ProductsComponent implements OnInit {
             .child(`/${this.cat}/${this.id}/menu` + this.compressedImage.name);
 
           storage.put(this.compressedImage).then(async (snapshot) => {
-            console.log('File uploaded');
             var opt = {
               url: await snapshot.ref.getDownloadURL(),
               storeType: this.cat,
@@ -104,7 +102,6 @@ export class ProductsComponent implements OnInit {
             var urlResponse = await this.http
               .post(`${environment.backend_uri}/store/updateImgURL`, opt)
               .toPromise();
-            console.log(urlResponse);
           });
         }
       }
@@ -114,7 +111,6 @@ export class ProductsComponent implements OnInit {
       document.getElementById('newproductform').style.display = 'none';
     document.getElementById('new-product').style.display = 'block';
     } else {
-      console.log('Something went wrong');
     }
   }
 
@@ -147,7 +143,6 @@ export class ProductsComponent implements OnInit {
 
   async delete(event) {
     let res = await this.http.post(`${environment.backend_uri}/store/delete-product`, {cat: event.storeType, id: event.storeId, itemId: event.id}).toPromise()
-    console.log(res)
     this.products.splice(this.products.indexOf(event),1)
   }
 
@@ -156,14 +151,11 @@ export class ProductsComponent implements OnInit {
 
     console.log(event)
     let res = await this.http.post(`${environment.backend_uri}/store/update-product`, event).toPromise()
-    console.log(res)
   }
 
   async getProducts() {
     this.products = []
     this.products = await this.http.post(`${environment.backend_uri}/store/get-seller-products`, {cat: this.cat, id: this.id})
     .toPromise();
-
-    console.log(this.products)
   }
 }

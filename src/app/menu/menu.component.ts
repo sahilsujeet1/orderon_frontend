@@ -57,8 +57,6 @@ export class MenuComponent implements OnInit {
   {
     this.details = await this.http.get(`${environment.backend_uri}/store/details`).toPromise()
     this.menu = await this.http.get(`${environment.backend_uri}/store/menu`).toPromise()
-    console.log(this.details)
-    console.log(this.menu)
   }
 
   inc(item) {

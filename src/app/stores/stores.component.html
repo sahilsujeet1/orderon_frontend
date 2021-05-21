@@ -5,7 +5,8 @@
 
     <div class="row">
         <div class="col-md-4 mt-3" *ngFor="let store of stores, let i = index">
-            <div class="col glass" (click)="getDetails(store)" [routerLink]="['/menu/'] + store.id">
+            <div class="col glass" (click)="getDetails(store)">
+            <!-- <div class="col glass" (click)="getDetails(store)" [routerLink]="['/menu/'] + store.id"> -->
                 <div class="text-center pt-3">
                     <img src="{{store.imgURL}}" alt="" width="100%" style="border-radius: 1rem;">
                 </div>

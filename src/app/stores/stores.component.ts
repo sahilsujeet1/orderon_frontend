@@ -22,19 +22,19 @@ export class StoresComponent implements OnInit {
 
   async getStores() {
     this.stores = await this.http.get(`${environment.backend_uri}/stores/get`).toPromise()
-    console.log(this.stores)
   }
 
-  async getDetails(event: any) {
+  getDetails(event: any) {
 
     let options = {
       category : event.category,
       doc_id : event.id
     }
     
-    console.log(options.category, options.doc_id)
-
-    await this.http.post(`${environment.backend_uri}/store/input`, options).toPromise()
+    this.http.post(`${environment.backend_uri}/store/input`, options).toPromise()
+    .then(() => {
+      this.router.navigate(['/menu'])
+    })
     
   }
 

@@ -78,10 +78,6 @@ export class SellerPageComponent implements OnInit {
     this.newOrders = this.sortAsLatest(this.newOrders);
     this.inProcess = this.sortAsLatest(this.inProcess);
     this.outForDelivery = this.sortAsLatest(this.outForDelivery);
-
-    console.log(this.newOrders);
-    console.log(this.inProcess);
-    console.log(this.outForDelivery);
   }
 
   sortAsLatest(orders) {
@@ -115,9 +111,8 @@ export class SellerPageComponent implements OnInit {
       id: this.id,
       item: order,
     };
-    var res = await this.http
+    await this.http
       .post(`${environment.backend_uri}/orderhistory/status-update`, options)
       .toPromise();
-    console.log(res);
   }
 }

@@ -59,8 +59,6 @@ export class AddressPaymentComponent implements OnInit {
         this.txnStatus = 'TXN_SUCCESS';
         document.getElementById('orderStatus').style.display = 'block';
         document.getElementById('address-payment').style.display = 'none';
-        console.log('Order ID: ' + res);
-        console.log('Order placed successfully as COD');
         this.crt.empty();
       }
     }

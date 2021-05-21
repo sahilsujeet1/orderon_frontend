@@ -23,7 +23,6 @@ import { AddressComponent } from './address/address.component';
 import { SellerPageComponent } from './seller-page/seller-page.component';
 import { ProductsComponent } from './products/products.component';
 import { LoginSellerComponent } from './login-seller/login-seller.component';
-import { TestComponent } from './test/test.component';
 import { NewstoreformComponent } from './navbar/newstoreform/newstoreform.component';
 
 const firebaseConfig = {
@@ -56,7 +55,6 @@ firebase.initializeApp(firebaseConfig);
     SellerPageComponent,
     ProductsComponent,
     LoginSellerComponent,
-    TestComponent,
     NewstoreformComponent,
   ],
   imports: [

@@ -92,8 +92,6 @@ export class NewstoreformComponent implements OnInit {
         .post(`${environment.backend_uri}/stores/add`, options)
         .toPromise();
 
-      console.log(response);
-
       if (response.storeId) {
         if (!response.error) {
           var storage = firebase
@@ -102,16 +100,14 @@ export class NewstoreformComponent implements OnInit {
             .child(`/${options.category}/` + this.compressedImage.name);
 
           storage.put(this.compressedImage).then(async (snapshot) => {
-            console.log('File uploaded');
             var opt = {
               url: await snapshot.ref.getDownloadURL(),
               category: form.value.category.value,
               storeId: response.storeId,
             };
-            var urlResponse = await this.http
+            await this.http
               .post(`${environment.backend_uri}/stores/update`, opt)
               .toPromise();
-            console.log(urlResponse);
           });
         }
       }
@@ -128,9 +124,10 @@ export class NewstoreformComponent implements OnInit {
       useWebWorker: true,
     };
     this.compressedImage = await imageCompression(file, options);
-    this.imgURL = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.compressedImage))
+    this.imgURL = this.sanitizer.bypassSecurityTrustUrl(
+      URL.createObjectURL(this.compressedImage)
+    );
 
-    console.log(this.imgURL);
     this.newStore.value.compressedImage.value = this.compressedImage;
   }
 
